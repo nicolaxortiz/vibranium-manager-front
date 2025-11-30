@@ -14,6 +14,9 @@ export default function CustomerModal({
   open,
   selectedClient,
   fetchCustomers,
+  setAlertMessage,
+  setAlertSeverity,
+  handleClickAlert,
 }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,13 +27,21 @@ export default function CustomerModal({
       let response = "";
       if (selectedClient) {
         response = await updateCustomer(selectedClient._id, formJson);
+        setAlertMessage("Cliente actualizado correctamente");
+        setAlertSeverity("success");
+        handleClickAlert();
       } else {
         response = await createCustomer(formJson);
+        setAlertMessage("Cliente creado correctamente");
+        setAlertSeverity("success");
+        handleClickAlert();
       }
 
       fetchCustomers();
     } catch (error) {
-      console.error("Error al crear el cliente:", error);
+      setAlertMessage("Error en opcion de cliente");
+      setAlertSeverity("error");
+      handleClickAlert();
     }
 
     handleClose();

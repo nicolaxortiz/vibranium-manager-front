@@ -36,3 +36,13 @@ export const updateCustomer = async (customerId, customerData) => {
     throw error;
   }
 };
+
+export const deleteCustomer = async (customerId) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}/${customerId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting customer:", error.message);
+    throw error;
+  }
+};

@@ -19,8 +19,10 @@ export default function CostumerList({
   setPage,
   rowsPerPage,
   setRowsPerPage,
+  selectedClient,
   setSelectedClient,
   handleClickOpen,
+  handleDeleteCustomer,
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -33,6 +35,16 @@ export default function CostumerList({
   };
   const handleCloseMenu = () => {
     setAnchorEl(null);
+  };
+
+  const [openModal, setOpenModal] = React.useState(false);
+
+  const handleClickOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
   };
 
   return (
@@ -85,6 +97,7 @@ export default function CostumerList({
         </MenuItem>
         <MenuItem
           onClick={() => {
+            handleClickOpenModal();
             handleCloseMenu();
           }}
         >
@@ -94,6 +107,16 @@ export default function CostumerList({
           Eliminar
         </MenuItem>
       </Menu>
+
+      <ConfirmModal
+        modalTitle={`¿Desea eliminar a ${
+          selectedClient !== null ? selectedClient.name : ""
+        } de los clientes?`}
+        modalContent={"Esta acción no se puede deshacer"}
+        open={openModal}
+        handleClose={handleCloseModal}
+        handleFunction={() => handleDeleteCustomer(selectedClient._id)}
+      />
     </Box>
   );
 }

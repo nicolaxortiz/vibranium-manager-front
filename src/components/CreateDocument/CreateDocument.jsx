@@ -23,7 +23,9 @@ export default function CreateDocument({ mode }) {
       setSelectedOrder(response);
     } catch (error) {
       navigate("/document-list");
-      console.error("Error fetching order data:", error);
+      setAlertMessage("No se encontro el documento");
+      setAlertSeverity("Error");
+      handleClick();
     }
   };
 
