@@ -85,17 +85,18 @@ export default function DocumentsBox({
               <TableCell align="center" sx={{ fontWeight: "Bold" }}>
                 Código
               </TableCell>
-              <TableCell
-                align="center"
-                sx={{ fontWeight: "Bold", minWidth: 70 }}
-              >
-                NIT / CC
-              </TableCell>
+
               <TableCell
                 align="center"
                 sx={{ fontWeight: "Bold", minWidth: 200 }}
               >
                 Cliente
+              </TableCell>
+              <TableCell
+                align="center"
+                sx={{ fontWeight: "Bold", minWidth: 70 }}
+              >
+                NIT / CC
               </TableCell>
               <TableCell align="center" sx={{ fontWeight: "Bold" }}>
                 Cant
@@ -129,10 +130,10 @@ export default function DocumentsBox({
               return (
                 <TableRow tabIndex={-1} key={index}>
                   <TableCell align="center">{row.code}</TableCell>
+                  <TableCell align="center">{row.customerId.name}</TableCell>
                   <TableCell align="center">
                     {row.customerId.document}
                   </TableCell>
-                  <TableCell align="center">{row.customerId.name}</TableCell>
                   <TableCell align="center">{row.products.length}</TableCell>
                   <TableCell align="center">
                     ${" "}
