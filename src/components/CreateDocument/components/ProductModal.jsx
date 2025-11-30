@@ -14,6 +14,9 @@ export default function ProductModal({
   open,
   setSelectedProduct,
   selectedProduct,
+  setAlertMessage,
+  setAlertSeverity,
+  handleClick,
 }) {
   const [priceInput, setPriceInput] = useState("");
 
@@ -35,12 +38,20 @@ export default function ProductModal({
       if (selectedProduct) {
         response = await updateProduct(selectedProduct._id, formJson);
         setSelectedProduct(response);
+        setAlertMessage("Producto actualizado correctamente");
+        setAlertSeverity("success");
+        handleClick();
       } else {
         response = await createProduct(formJson);
         setSelectedProduct(response);
+        setAlertMessage("Producto creado correctamente");
+        setAlertSeverity("success");
+        handleClick();
       }
     } catch (error) {
-      console.error("Error al crear el producto:", error);
+      setAlertMessage("Error en opcion de producto");
+      setAlertSeverity("error");
+      handleClick();
     }
 
     handleClose();

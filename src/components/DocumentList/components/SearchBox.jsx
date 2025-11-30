@@ -137,7 +137,7 @@ export default function SearchBox(props) {
                 fromDate: null,
                 toDate: null,
                 page: 1,
-                limit: 10,
+                limit: props.rowsPerPage,
               });
             }}
           >

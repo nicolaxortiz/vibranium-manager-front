@@ -14,7 +14,14 @@ import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Cancel";
 import ConfirmModal from "../../ConfirmModal";
 
-export default function ProductSummary({ setProducts, products, order }) {
+export default function ProductSummary({
+  setProducts,
+  products,
+  order,
+  setAlertMessage,
+  setAlertSeverity,
+  handleClick,
+}) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -51,6 +58,9 @@ export default function ProductSummary({ setProducts, products, order }) {
     setProducts(updatedProducts);
     setEditingIndex(null);
     setTempProduct({});
+    setAlertMessage("Producto editado correctamente");
+    setAlertSeverity("success");
+    handleClick();
   };
 
   const handleInputChange = (field, value) => {
@@ -60,6 +70,9 @@ export default function ProductSummary({ setProducts, products, order }) {
   const handleDeleteProduct = () => {
     const newProducts = products.filter((_, i) => i !== selectedIndex);
     setProducts(newProducts);
+    setAlertMessage("Producto eliminado correctamente");
+    setAlertSeverity("success");
+    handleClick();
   };
 
   return (

@@ -44,14 +44,16 @@ export default function DocumentList() {
           : null,
         toDate: toDate ? `${toDate.$y}-${toDate.$M + 1}-${toDate.$D}` : null,
         page: page,
-        limit: 10,
+        limit: rowsPerPage,
         ...overrideParams,
       });
 
       setDocuments(response.orders);
       setTotalDocuments(response.pagination.total);
     } catch (error) {
-      console.error("Error fetching documents:", error);
+      setAlertMessage("Error al buscar los documentos");
+      setAlertSeverity("error");
+      handleClick();
     }
   };
 
@@ -73,7 +75,9 @@ export default function DocumentList() {
         a.download = pdfFileName;
         a.click();
       } catch (error) {
-        console.error("Error downloading PDF:", error);
+        setAlertMessage("Error al descargar el doumento");
+        setAlertSeverity("error");
+        handleClick();
       }
     }
   };
@@ -96,7 +100,7 @@ export default function DocumentList() {
 
   React.useEffect(() => {
     fetchDocuments();
-  }, []);
+  }, [page, rowsPerPage]);
   return (
     <>
       <SearchBox
@@ -111,6 +115,7 @@ export default function DocumentList() {
         customerDocument={customerDocument}
         setCustomerDocument={setCustomerDocument}
         fetchDocuments={fetchDocuments}
+        rowsPerPage={rowsPerPage}
       />
       <DocumentsBox
         documents={documents}

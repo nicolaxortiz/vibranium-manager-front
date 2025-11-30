@@ -5,7 +5,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL + "customers";
 export const searchCustomers = async (query) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/search`, {
-      params: { q: query },
+      params: query,
     });
     return response.data;
   } catch (error) {

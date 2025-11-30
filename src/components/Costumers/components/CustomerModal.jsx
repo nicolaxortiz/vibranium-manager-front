@@ -9,14 +9,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Stack from "@mui/material/Stack";
 import { createCustomer, updateCustomer } from "../../../API/CustomerAPI";
 
-export default function ClientModal({
+export default function CustomerModal({
   handleClose,
   open,
-  setSelectedClient,
   selectedClient,
-  setAlertMessage,
-  setAlertSeverity,
-  handleClick,
+  fetchCustomers,
 }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -27,26 +24,17 @@ export default function ClientModal({
       let response = "";
       if (selectedClient) {
         response = await updateCustomer(selectedClient._id, formJson);
-        setSelectedClient(response);
-        setAlertMessage("Cliente actualizado correctamente");
-        setAlertSeverity("success");
-        handleClick();
       } else {
         response = await createCustomer(formJson);
-        setSelectedClient(response);
-        setAlertMessage("Cliente creado correctamente");
-        setAlertSeverity("success");
-        handleClick();
       }
+
+      fetchCustomers();
     } catch (error) {
-      setAlertMessage("Error en opcion de cliente");
-      setAlertSeverity("error");
-      handleClick();
+      console.error("Error al crear el cliente:", error);
     }
 
     handleClose();
   };
-
   return (
     <Dialog open={open} onClose={handleClose} maxWidth={"md"} fullWidth>
       <DialogTitle>

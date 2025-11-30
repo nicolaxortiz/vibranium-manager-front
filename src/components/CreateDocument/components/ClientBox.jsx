@@ -9,6 +9,9 @@ export default function ClientBox({
   selectedClient,
   setSelectedClient,
   order,
+  setAlertMessage,
+  setAlertSeverity,
+  handleClick,
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -50,6 +53,9 @@ export default function ClientBox({
         open={open}
         setSelectedClient={setSelectedClient}
         selectedClient={selectedClient}
+        setAlertMessage={setAlertMessage}
+        setAlertSeverity={setAlertSeverity}
+        handleClick={handleClick}
       />
     </Box>
   );

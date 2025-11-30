@@ -162,17 +162,26 @@ export default function CreateDocument({ mode }) {
         selectedClient={selectedClient}
         setSelectedClient={setSelectedClient}
         order={order}
+        setAlertMessage={setAlertMessage}
+        setAlertSeverity={setAlertSeverity}
+        handleClick={handleClick}
       />
       <ProductBox
         selectedProduct={selectedProduct}
         setSelectedProduct={setSelectedProduct}
         setProducts={setProducts}
         order={order}
+        setAlertMessage={setAlertMessage}
+        setAlertSeverity={setAlertSeverity}
+        handleClick={handleClick}
       />
       <ProductSummary
         setProducts={setProducts}
         products={products}
         order={order}
+        setAlertMessage={setAlertMessage}
+        setAlertSeverity={setAlertSeverity}
+        handleClick={handleClick}
       />
       <Specifications
         setDocumentInformation={setDocumentInformation}

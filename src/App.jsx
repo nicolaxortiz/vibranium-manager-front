@@ -4,6 +4,7 @@ import CreateDocument from "./components/CreateDocument/CreateDocument";
 import Banner from "./components/Banner.jsx";
 import SideMenu from "./components/SideMenu.jsx";
 import DocumentList from "./components/DocumentList/DocumentList.jsx";
+import Costumers from "./components/Costumers/Costumers.jsx";
 
 function App() {
   const [open, setOpen] = React.useState(false);
@@ -23,6 +24,7 @@ function App() {
             element={<CreateDocument mode="edit" />}
           />
           <Route path="/document-list" element={<DocumentList />} />
+          <Route path="/customers" element={<Costumers />} />
         </Routes>
       </BrowserRouter>
     </>

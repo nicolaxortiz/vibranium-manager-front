@@ -10,6 +10,9 @@ export default function ProductBox({
   setSelectedProduct,
   setProducts,
   order,
+  setAlertMessage,
+  setAlertSeverity,
+  handleClick,
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -55,6 +58,9 @@ export default function ProductBox({
         open={open}
         setSelectedProduct={setSelectedProduct}
         selectedProduct={selectedProduct}
+        setAlertMessage={setAlertMessage}
+        setAlertSeverity={setAlertSeverity}
+        handleClick={handleClick}
       />
     </Box>
   );

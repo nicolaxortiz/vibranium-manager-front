@@ -18,7 +18,6 @@ import ConfirmModal from "../../ConfirmModal";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import { downloadOrderPDF } from "../../../API/OrderAPI";
 
 export default function DocumentsBox({
   documents,
@@ -86,7 +85,10 @@ export default function DocumentsBox({
               <TableCell align="center" sx={{ fontWeight: "Bold" }}>
                 Código
               </TableCell>
-              <TableCell align="center" sx={{ fontWeight: "Bold" }}>
+              <TableCell
+                align="center"
+                sx={{ fontWeight: "Bold", minWidth: 70 }}
+              >
                 NIT / CC
               </TableCell>
               <TableCell
@@ -196,6 +198,7 @@ export default function DocumentsBox({
               }`,
               "_blank"
             );
+            handleCloseMenu();
           }}
         >
           <ListItemIcon>
@@ -203,7 +206,12 @@ export default function DocumentsBox({
           </ListItemIcon>
           Previsualizar
         </MenuItem>
-        <MenuItem onClick={() => handledownloadPDF(selectedIndex)}>
+        <MenuItem
+          onClick={() => {
+            handledownloadPDF(selectedIndex);
+            handleCloseMenu();
+          }}
+        >
           <ListItemIcon>
             <PictureAsPdfIcon fontSize="small" />
           </ListItemIcon>
@@ -212,6 +220,7 @@ export default function DocumentsBox({
         <MenuItem
           onClick={() => {
             navigate(`/update-document/${selectedIndex._id}`);
+            handleCloseMenu();
           }}
         >
           <ListItemIcon>
@@ -222,6 +231,7 @@ export default function DocumentsBox({
         <MenuItem
           onClick={() => {
             handleClickOpen();
+            handleCloseMenu();
           }}
         >
           <ListItemIcon>

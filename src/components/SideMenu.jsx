@@ -9,6 +9,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import PeopleIcon from "@mui/icons-material/People";
+import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 import Title from "./Title";
 
@@ -43,6 +45,32 @@ export default function SideMenu({ open, toggleDrawer }) {
                 <FormatListNumberedIcon />
               </ListItemIcon>
               <ListItemText primary="Lista de documentos" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem
+            key={3}
+            disablePadding
+            onClick={() => navigate("/customers")}
+          >
+            <ListItemButton>
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Clientes" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem
+            key={4}
+            disablePadding
+            onClick={() => navigate("/document-list")}
+          >
+            <ListItemButton>
+              <ListItemIcon>
+                <FitnessCenterIcon />
+              </ListItemIcon>
+              <ListItemText primary="Productos" />
             </ListItemButton>
           </ListItem>
         </List>
