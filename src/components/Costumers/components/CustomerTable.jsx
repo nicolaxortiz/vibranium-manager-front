@@ -49,12 +49,15 @@ export default function CustomerTable({
               <TableCell align="center" sx={{ fontWeight: "Bold" }}>
                 Celular
               </TableCell>
-              <TableCell align="center" sx={{ fontWeight: "Bold" }}>
+              <TableCell
+                align="center"
+                sx={{ fontWeight: "Bold", minWidth: 250 }}
+              >
                 Correo electronico
               </TableCell>
               <TableCell
                 align="center"
-                sx={{ fontWeight: "Bold", minWidth: 200 }}
+                sx={{ fontWeight: "Bold", minWidth: 250 }}
               >
                 Direccion
               </TableCell>
@@ -80,10 +83,10 @@ export default function CustomerTable({
                   <TableCell align="center">{row.document}</TableCell>
                   <TableCell align="center">{row.phone}</TableCell>
                   <TableCell align="center">
-                    <TruncatedCell text={row.email} maxWidth={200} />
+                    <TruncatedCell text={row.email} maxWidth={250} />
                   </TableCell>
                   <TableCell align="center">
-                    <TruncatedCell text={row.address} maxWidth={220} />
+                    <TruncatedCell text={row.address} maxWidth={250} />
                   </TableCell>
                   <TableCell align="center">
                     <IconButton

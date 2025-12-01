@@ -7,6 +7,7 @@ export default function TruncatedCell({ text, maxWidth = 70 }) {
       <Box
         sx={{
           maxWidth,
+          mx: "auto",
           whiteSpace: "nowrap",
           overflow: "hidden",
           textOverflow: "ellipsis",
