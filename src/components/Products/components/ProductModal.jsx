@@ -12,11 +12,11 @@ import { createProduct, updateProduct } from "../../../API/ProductAPI";
 export default function ProductModal({
   handleClose,
   open,
-  setSelectedProduct,
   selectedProduct,
+  fetchProducts,
   setAlertMessage,
   setAlertSeverity,
-  handleClick,
+  handleClickAlert,
 }) {
   const [priceInput, setPriceInput] = useState("");
 
@@ -37,21 +37,21 @@ export default function ProductModal({
       let response = "";
       if (selectedProduct) {
         response = await updateProduct(selectedProduct._id, formJson);
-        setSelectedProduct(response);
         setAlertMessage("Producto actualizado correctamente");
         setAlertSeverity("success");
-        handleClick();
+        handleClickAlert();
       } else {
         response = await createProduct(formJson);
-        setSelectedProduct(response);
         setAlertMessage("Producto creado correctamente");
         setAlertSeverity("success");
-        handleClick();
+        handleClickAlert();
       }
+
+      fetchProducts();
     } catch (error) {
-      setAlertMessage("Error en opcion de producto");
+      setAlertMessage("Error en opcion de producto: " + error.message);
       setAlertSeverity("error");
-      handleClick();
+      handleClickAlert();
     }
     setPriceInput("");
     handleClose();

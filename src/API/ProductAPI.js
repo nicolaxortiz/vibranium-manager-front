@@ -5,7 +5,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL + "products";
 export const searchProducts = async (query) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/search`, {
-      params: { q: query },
+      params: query,
     });
     return response.data;
   } catch (error) {
@@ -33,6 +33,16 @@ export const updateProduct = async (productId, productData) => {
     return response.data;
   } catch (error) {
     console.error("Error updating product:", error.message);
+    throw error;
+  }
+};
+
+export const deleteProduct = async (productId) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}/${productId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting product:", error.message);
     throw error;
   }
 };

@@ -64,7 +64,7 @@ export default function SideMenu({ open, toggleDrawer }) {
           <ListItem
             key={4}
             disablePadding
-            onClick={() => navigate("/document-list")}
+            onClick={() => navigate("/products")}
           >
             <ListItemButton>
               <ListItemIcon>

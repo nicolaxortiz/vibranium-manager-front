@@ -8,16 +8,16 @@ import TableRow from "@mui/material/TableRow";
 import TablePagination from "@mui/material/TablePagination";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import TruncatedCell from "./TruncatedCell";
+import TruncatedCell from "../components/TruncatedCell";
 
-export default function CustomerTable({
-  customers,
-  totalCustomers,
+export default function ProductTable({
+  products,
+  totalProducts,
   page,
   setPage,
   rowsPerPage,
   setRowsPerPage,
-  setSelectedClient,
+  setSelectedProduct,
   handleClickMenu,
 }) {
   const handleChangePage = (event, newPage) => {
@@ -28,6 +28,7 @@ export default function CustomerTable({
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(1);
   };
+
   return (
     <>
       <TableContainer sx={{ maxHeight: 440 }}>
@@ -36,63 +37,52 @@ export default function CustomerTable({
             <TableRow>
               <TableCell
                 align="center"
+                sx={{ fontWeight: "Bold", minWidth: 100 }}
+              >
+                Código
+              </TableCell>
+              <TableCell
+                align="center"
                 sx={{ fontWeight: "Bold", minWidth: 250 }}
               >
                 Nombre
               </TableCell>
               <TableCell
                 align="center"
-                sx={{ fontWeight: "Bold", minWidth: 70 }}
+                sx={{ fontWeight: "Bold", minWidth: 150 }}
               >
-                NIT / CC
+                Precio
               </TableCell>
-              <TableCell align="center" sx={{ fontWeight: "Bold" }}>
-                Celular
-              </TableCell>
-              <TableCell
-                align="center"
-                sx={{ fontWeight: "Bold", minWidth: 250 }}
-              >
-                Correo electronico
-              </TableCell>
-              <TableCell
-                align="center"
-                sx={{ fontWeight: "Bold", minWidth: 250 }}
-              >
-                Direccion
-              </TableCell>
+
               <TableCell align="center" sx={{ fontWeight: "Bold" }}>
                 Opciones
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {totalCustomers === 0 && (
+            {totalProducts === 0 && (
               <TableRow>
-                <TableCell colSpan={8} align="center">
-                  No hay clientes para mostrar
+                <TableCell colSpan={4} align="center">
+                  No hay productos para mostrar
                 </TableCell>
               </TableRow>
             )}
-            {customers.map((row, index) => {
+            {products.map((row, index) => {
               return (
                 <TableRow tabIndex={-1} key={index}>
+                  <TableCell align="center">{row.code}</TableCell>
                   <TableCell align="center">
                     <TruncatedCell text={row.name} maxWidth={250} />
                   </TableCell>
-                  <TableCell align="center">{row.document}</TableCell>
-                  <TableCell align="center">{row.phone}</TableCell>
                   <TableCell align="center">
-                    <TruncatedCell text={row.email} maxWidth={250} />
+                    $ {row.price.toLocaleString("es-CO")}
                   </TableCell>
-                  <TableCell align="center">
-                    <TruncatedCell text={row.address} maxWidth={250} />
-                  </TableCell>
+
                   <TableCell align="center">
                     <IconButton
                       aria-label="menu"
                       onClick={(e) => {
-                        setSelectedClient(row);
+                        setSelectedProduct(row);
                         handleClickMenu(e);
                       }}
                     >
@@ -108,7 +98,7 @@ export default function CustomerTable({
       <TablePagination
         rowsPerPageOptions={[10, 20, 30]}
         component="div"
-        count={totalCustomers}
+        count={totalProducts}
         rowsPerPage={rowsPerPage}
         labelRowsPerPage="Filas por página"
         labelDisplayedRows={({ from, to, count }) =>

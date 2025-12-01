@@ -3,23 +3,23 @@ import { Box, useMediaQuery, useTheme } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ConfirmModal from "../../ConfirmModal";
+import Title from "../../Title";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import Title from "../../Title";
-import CustomerTable from "./CustomerTable";
+import ProductTable from "./ProductTable";
 
-export default function CostumerList({
-  customers,
-  totalCustomers,
+export default function ProductList({
+  products,
+  totalProducts,
   page,
   setPage,
   rowsPerPage,
   setRowsPerPage,
-  selectedClient,
-  setSelectedClient,
+  selectedProduct,
+  setSelectedProduct,
   handleClickOpen,
-  handleDeleteCustomer,
+  handleDeleteProduct,
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -43,7 +43,6 @@ export default function CostumerList({
   const handleCloseModal = () => {
     setOpenModal(false);
   };
-
   return (
     <Box
       sx={{
@@ -57,16 +56,16 @@ export default function CostumerList({
         px: isMobile ? "5%" : "2%",
       }}
     >
-      <Title text="Lista de clientes" />
+      <Title text="Lista de productos" />
 
-      <CustomerTable
-        customers={customers}
-        totalCustomers={totalCustomers}
+      <ProductTable
+        products={products}
+        totalProducts={totalProducts}
         page={page}
         setPage={setPage}
         rowsPerPage={rowsPerPage}
         setRowsPerPage={setRowsPerPage}
-        setSelectedClient={setSelectedClient}
+        setSelectedProduct={setSelectedProduct}
         handleClickMenu={handleClickMenu}
       />
 
@@ -106,13 +105,13 @@ export default function CostumerList({
       </Menu>
 
       <ConfirmModal
-        modalTitle={`¿Desea eliminar a ${
-          selectedClient !== null ? selectedClient.name : ""
-        } de los clientes?`}
+        modalTitle={`¿Desea eliminar ${
+          selectedProduct !== null ? selectedProduct.name : ""
+        } de los productos?`}
         modalContent={"Esta acción no se puede deshacer"}
         open={openModal}
         handleClose={handleCloseModal}
-        handleFunction={() => handleDeleteCustomer(selectedClient._id)}
+        handleFunction={() => handleDeleteProduct(selectedProduct._id)}
       />
     </Box>
   );

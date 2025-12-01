@@ -1,19 +1,18 @@
 import React from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import Title from "../../Title";
-import CustomerFilter from "./CustomerFilter";
+import ProductFilter from "./ProductFilter";
 
 export default function SearchBox({
   search,
   setSearch,
-  fetchCustomers,
+  fetchProducts,
   handleClickOpen,
-  setSelectedClient,
+  setSelectedProduct,
   rowsPerPage,
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
   return (
     <Box
       sx={{
@@ -29,12 +28,12 @@ export default function SearchBox({
     >
       <Title text="Filtros de busqueda" />
 
-      <CustomerFilter
+      <ProductFilter
         search={search}
         setSearch={setSearch}
-        fetchCustomers={fetchCustomers}
+        fetchProducts={fetchProducts}
         handleClickOpen={handleClickOpen}
-        setSelectedClient={setSelectedClient}
+        setSelectedProduct={setSelectedProduct}
         rowsPerPage={rowsPerPage}
       />
     </Box>

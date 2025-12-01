@@ -1,4 +1,5 @@
 import React from "react";
+import { useMediaQuery, useTheme } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import Slide from "@mui/material/Slide";
@@ -14,12 +15,19 @@ export default function GeneralAlert({
   alertMessage,
   alertSeverity,
 }) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Snackbar
       open={openAlert}
       autoHideDuration={3000}
       onClose={handleCloseAlert}
-      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      anchorOrigin={
+        isMobile
+          ? { vertical: "up", horizontal: "center" }
+          : { vertical: "bottom", horizontal: "right" }
+      }
       slots={{ transition: Slide }}
     >
       <Alert

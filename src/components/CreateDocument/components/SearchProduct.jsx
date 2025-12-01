@@ -24,9 +24,9 @@ export default function SearchProduct({
     }
 
     try {
-      const res = await searchProducts(searchTerm);
+      const res = await searchProducts({ search: query, limit: 100 });
 
-      setOptions(res);
+      setOptions(res.products);
     } catch (error) {
       setOptions([]);
     }

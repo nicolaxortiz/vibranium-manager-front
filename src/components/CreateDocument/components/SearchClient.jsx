@@ -24,7 +24,7 @@ export default function SearchClient({
     }
 
     try {
-      const res = await searchCustomers({ search: searchTerm, limit: 100 });
+      const res = await searchCustomers({ search: query, limit: 100 });
 
       setOptions(res.customers);
     } catch (error) {

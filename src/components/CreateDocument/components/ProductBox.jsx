@@ -30,7 +30,7 @@ export default function ProductBox({
   return (
     <Box
       sx={{
-        my: 4,
+        mt: 4,
         mx: "auto",
         width: "80%",
         borderRadius: 2,
