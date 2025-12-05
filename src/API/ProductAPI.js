@@ -1,10 +1,10 @@
-import axios from "axios";
+import api from "../services/api";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL + "products";
 
 export const searchProducts = async (query) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/search`, {
+    const response = await api.get(`${API_BASE_URL}/search`, {
       params: query,
     });
     return response.data;
@@ -16,7 +16,7 @@ export const searchProducts = async (query) => {
 
 export const createProduct = async (productData) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}`, productData);
+    const response = await api.post(`${API_BASE_URL}`, productData);
     return response.data;
   } catch (error) {
     console.error("Error creating product:", error.message);
@@ -26,10 +26,7 @@ export const createProduct = async (productData) => {
 
 export const updateProduct = async (productId, productData) => {
   try {
-    const response = await axios.put(
-      `${API_BASE_URL}/${productId}`,
-      productData
-    );
+    const response = await api.put(`${API_BASE_URL}/${productId}`, productData);
     return response.data;
   } catch (error) {
     console.error("Error updating product:", error.message);
@@ -39,7 +36,7 @@ export const updateProduct = async (productId, productData) => {
 
 export const deleteProduct = async (productId) => {
   try {
-    const response = await axios.delete(`${API_BASE_URL}/${productId}`);
+    const response = await api.delete(`${API_BASE_URL}/${productId}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting product:", error.message);

@@ -11,6 +11,7 @@ import {
   updateOrder,
 } from "../../API/OrderAPI";
 import GeneralAlert from "../GeneralAlert";
+import { isAuthenticated } from "../../utils/auth";
 
 export default function CreateDocument({ mode }) {
   let { id } = useParams();
@@ -63,6 +64,12 @@ export default function CreateDocument({ mode }) {
       });
     }
   }, [selectedOrder]);
+
+  React.useEffect(() => {
+    if (!isAuthenticated()) {
+      navigate("/");
+    }
+  }, []);
 
   const [selectedClient, setSelectedClient] = React.useState(null);
   const [selectedProduct, setSelectedProduct] = React.useState(null);

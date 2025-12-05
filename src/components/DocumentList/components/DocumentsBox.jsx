@@ -18,6 +18,7 @@ import ConfirmModal from "../../ConfirmModal";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import TruncatedCell from "./TruncatedCell";
 
 export default function DocumentsBox({
   documents,
@@ -130,7 +131,9 @@ export default function DocumentsBox({
               return (
                 <TableRow tabIndex={-1} key={index}>
                   <TableCell align="center">{row.code}</TableCell>
-                  <TableCell align="center">{row.customerId.name}</TableCell>
+                  <TableCell align="center">
+                    <TruncatedCell text={row.customerId.name} maxWidth={250} />
+                  </TableCell>
                   <TableCell align="center">
                     {row.customerId.document}
                   </TableCell>

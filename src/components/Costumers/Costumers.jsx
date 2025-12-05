@@ -4,8 +4,11 @@ import CostumerList from "./components/CostumerList";
 import { deleteCustomer, searchCustomers } from "../../API/CustomerAPI";
 import CustomerModal from "./components/CustomerModal";
 import GeneralAlert from "../GeneralAlert";
+import { useNavigate } from "react-router";
+import { isAuthenticated } from "../../utils/auth";
 
 export default function Costumers() {
+  const navigate = useNavigate();
   const [customers, setCustomers] = React.useState([]);
 
   const [totalCustomers, setTotalCustomers] = React.useState(0);
@@ -76,8 +79,16 @@ export default function Costumers() {
   };
 
   React.useEffect(() => {
-    fetchCustomers();
+    if (isAuthenticated()) {
+      fetchCustomers();
+    }
   }, [page, rowsPerPage]);
+
+  React.useEffect(() => {
+    if (!isAuthenticated()) {
+      navigate("/");
+    }
+  }, []);
   return (
     <>
       <SearchBox

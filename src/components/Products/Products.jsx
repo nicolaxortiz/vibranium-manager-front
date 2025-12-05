@@ -4,8 +4,11 @@ import { deleteProduct, searchProducts } from "../../API/ProductAPI";
 import ProductList from "./components/ProductList";
 import ProductModal from "./components/ProductModal";
 import GeneralAlert from "../GeneralAlert";
+import { useNavigate } from "react-router";
+import { isAuthenticated } from "../../utils/auth";
 
 export default function Products() {
+  const navigate = useNavigate();
   const [products, setProducts] = React.useState([]);
 
   const [totalProducts, setTotalProducts] = React.useState(0);
@@ -76,8 +79,16 @@ export default function Products() {
   };
 
   React.useEffect(() => {
-    fetchProducts();
+    if (isAuthenticated()) {
+      fetchProducts();
+    }
   }, [page, rowsPerPage]);
+
+  React.useEffect(() => {
+    if (!isAuthenticated()) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <>

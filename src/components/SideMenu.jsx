@@ -26,7 +26,11 @@ export default function SideMenu({ open, toggleDrawer }) {
         <Title text="Menu" />
         <Divider />
         <List>
-          <ListItem key={1} disablePadding onClick={() => navigate("/")}>
+          <ListItem
+            key={1}
+            disablePadding
+            onClick={() => navigate("/create-document")}
+          >
             <ListItemButton>
               <ListItemIcon>
                 <AssignmentIcon />

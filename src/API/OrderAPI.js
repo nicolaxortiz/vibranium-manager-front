@@ -1,10 +1,10 @@
-import axios from "axios";
+import api from "../services/api";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL + "orders";
 
 export const createOrder = async (orderData) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}`, orderData);
+    const response = await api.post(`${API_BASE_URL}`, orderData);
     return response.data;
   } catch (error) {
     console.error("Error creating order:", error.message);
@@ -14,7 +14,7 @@ export const createOrder = async (orderData) => {
 
 export const updateOrder = async (orderId, orderData) => {
   try {
-    const response = await axios.put(`${API_BASE_URL}/${orderId}`, orderData);
+    const response = await api.put(`${API_BASE_URL}/${orderId}`, orderData);
     return response.data;
   } catch (error) {
     console.error("Error updating order:", error.message);
@@ -24,7 +24,7 @@ export const updateOrder = async (orderId, orderData) => {
 
 export const downloadOrderPDF = async (orderId) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/download/${orderId}`, {
+    const response = await api.get(`${API_BASE_URL}/download/${orderId}`, {
       responseType: "blob",
     });
     return response.data;
@@ -36,7 +36,7 @@ export const downloadOrderPDF = async (orderId) => {
 
 export const getOrderById = async (orderId) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/${orderId}`);
+    const response = await api.get(`${API_BASE_URL}/${orderId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching order by ID:", error.message);
@@ -46,7 +46,7 @@ export const getOrderById = async (orderId) => {
 
 export const searchOrders = async (query) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/search`, {
+    const response = await api.get(`${API_BASE_URL}/search`, {
       params: query,
     });
     return response.data;
@@ -58,7 +58,7 @@ export const searchOrders = async (query) => {
 
 export const deleteOrder = async (orderId) => {
   try {
-    const response = await axios.delete(`${API_BASE_URL}/${orderId}`);
+    const response = await api.delete(`${API_BASE_URL}/${orderId}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting order:", error.message);

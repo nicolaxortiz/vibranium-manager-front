@@ -4,8 +4,11 @@ import DocumentsBox from "./components/DocumentsBox";
 import { deleteOrder, searchOrders } from "../../API/OrderAPI";
 import { downloadOrderPDF } from "../../API/OrderAPI";
 import GeneralAlert from "../GeneralAlert";
+import { useNavigate } from "react-router";
+import { isAuthenticated } from "../../utils/auth";
 
 export default function DocumentList() {
+  const navigate = useNavigate();
   const [documents, setDocuments] = React.useState([]);
   const [documentType, setDocumentType] = React.useState("");
   const [fromDate, setFromDate] = React.useState(null);
@@ -99,8 +102,16 @@ export default function DocumentList() {
   };
 
   React.useEffect(() => {
-    fetchDocuments();
+    if (isAuthenticated()) {
+      fetchDocuments();
+    }
   }, [page, rowsPerPage]);
+
+  React.useEffect(() => {
+    if (!isAuthenticated()) {
+      navigate("/");
+    }
+  }, []);
   return (
     <>
       <SearchBox
