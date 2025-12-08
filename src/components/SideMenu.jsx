@@ -28,7 +28,7 @@ export default function SideMenu({ open, toggleDrawer }) {
         <Divider />
         <List>
           <ListItem
-            key={1}
+            key={0}
             disablePadding
             onClick={() => navigate("/dashboard")}
           >

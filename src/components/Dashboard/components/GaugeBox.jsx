@@ -1,14 +1,7 @@
 import React from "react";
-import {
-  Box,
-  useMediaQuery,
-  useTheme,
-  Typography,
-  Grid,
-  Stack,
-  Tooltip,
-} from "@mui/material";
-import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
+import { Box, useMediaQuery, useTheme, Typography, Grid } from "@mui/material";
+import { rainbowSurgePalette } from "@mui/x-charts/colorPalettes";
+import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
 
 export default function GaugeBox({
   title,
@@ -19,6 +12,7 @@ export default function GaugeBox({
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const palette = rainbowSurgePalette(theme.palette.mode);
 
   const formmatedTotalPaid =
     totalPaid >= 1000000
@@ -35,7 +29,7 @@ export default function GaugeBox({
         px: "15px",
       }}
     >
-      <Grid container spacing={5}>
+      <Grid container spacing={2}>
         <Grid item size={12}>
           <Typography
             variant="subtitle1"
@@ -51,18 +45,50 @@ export default function GaugeBox({
           </Typography>
         </Grid>
         <Grid item size={{ md: 12, xs: 12 }}>
-          <Gauge
-            value={totalPaid}
-            valueMax={totalInvoiced}
+          <PieChart
+            hideLegend={true}
+            series={[
+              {
+                arcLabel: (item) =>
+                  `${((item.value * 100) / totalInvoiced).toFixed(2)}%`,
+                innerRadius: 0,
+                outerRadius: 80,
+                data: [
+                  {
+                    label: "Abonos",
+                    value: totalPaid,
+                    color: palette[2],
+                  },
+                  {
+                    label: "Pendiente",
+                    value: totalPending,
+                    color: palette[1],
+                  },
+                ],
+                highlightScope: { fade: "global", highlight: "item" },
+              },
+              {
+                id: "outer",
+                innerRadius: 100,
+                outerRadius: 120,
+                data: [
+                  {
+                    label: "Ventas",
+                    value: totalInvoiced,
+                    color: palette[0],
+                  },
+                ],
+                highlightScope: { fade: "global", highlight: "item" },
+              },
+            ]}
             sx={{
-              fontFamily: "Montserrat",
-              fontSize: "18px",
-              [`& .${gaugeClasses.valueArc}`]: {
-                fill: color,
+              [`& .${pieArcLabelClasses.root}`]: {
+                fontWeight: "bold",
+                fontFamily: "Montserrat",
+                color: "white",
               },
             }}
-            cornerRadius="20%"
-            text={formmatedTotalPaid}
+            height={250}
           />
         </Grid>
         <Grid
