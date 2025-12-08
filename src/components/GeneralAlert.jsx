@@ -11,7 +11,7 @@ const SlideTransition = forwardRef(function SlideTransition(props, ref) {
 
 export default function GeneralAlert({
   openAlert,
-  handleCloseAlert,
+  handleClose,
   alertMessage,
   alertSeverity,
 }) {
@@ -22,7 +22,7 @@ export default function GeneralAlert({
     <Snackbar
       open={openAlert}
       autoHideDuration={3000}
-      onClose={handleCloseAlert}
+      onClose={handleClose}
       anchorOrigin={
         isMobile
           ? { vertical: "up", horizontal: "center" }
@@ -31,7 +31,7 @@ export default function GeneralAlert({
       slots={{ transition: Slide }}
     >
       <Alert
-        onClose={handleCloseAlert}
+        onClose={handleClose}
         severity={alertSeverity}
         variant="outlined"
         sx={{ width: "100%", bgcolor: "background.paper" }}

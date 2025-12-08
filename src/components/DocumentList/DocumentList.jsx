@@ -60,6 +60,26 @@ export default function DocumentList() {
     }
   };
 
+  const handleOpenInNewTab = async (orderId) => {
+    if (orderId) {
+      try {
+        const response = await downloadOrderPDF(orderId);
+
+        const blob = response;
+
+        const url = window.URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+      } catch (error) {
+        setAlertMessage("Error al abrir el documento: " + error.message);
+        setAlertSeverity("error");
+        handleClick();
+      }
+    }
+  };
+
   const handledownloadPDF = async (order) => {
     if (order) {
       try {
@@ -78,7 +98,7 @@ export default function DocumentList() {
         a.download = pdfFileName;
         a.click();
       } catch (error) {
-        setAlertMessage("Error al descargar el doumento");
+        setAlertMessage("Error al descargar el documento: " + error.message);
         setAlertSeverity("error");
         handleClick();
       }
@@ -136,6 +156,7 @@ export default function DocumentList() {
         rowsPerPage={rowsPerPage}
         setRowsPerPage={setRowsPerPage}
         handledownloadPDF={handledownloadPDF}
+        handleOpenInNewTab={handleOpenInNewTab}
         handleDeleteDocument={handleDeleteDocument}
       />
       <GeneralAlert

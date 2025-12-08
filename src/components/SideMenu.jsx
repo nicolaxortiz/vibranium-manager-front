@@ -12,6 +12,7 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import PeopleIcon from "@mui/icons-material/People";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
+import HomeIcon from "@mui/icons-material/Home";
 import Title from "./Title";
 
 export default function SideMenu({ open, toggleDrawer }) {
@@ -26,6 +27,19 @@ export default function SideMenu({ open, toggleDrawer }) {
         <Title text="Menu" />
         <Divider />
         <List>
+          <ListItem
+            key={1}
+            disablePadding
+            onClick={() => navigate("/dashboard")}
+          >
+            <ListItemButton>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Inicio" />
+            </ListItemButton>
+          </ListItem>
+
           <ListItem
             key={1}
             disablePadding

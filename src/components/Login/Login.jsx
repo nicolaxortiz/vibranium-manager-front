@@ -34,7 +34,7 @@ export default function Login() {
       );
 
       window.dispatchEvent(new Event("userChanged"));
-      navigate("/create-document");
+      navigate("/dashboard");
     } catch (error) {
       setError(error.response.status);
     } finally {
@@ -53,7 +53,11 @@ export default function Login() {
     >
       <Paper
         elevation={10}
-        sx={{ p: 6, width: isMobile ? "70%" : 400, borderRadius: 3 }}
+        sx={{
+          p: isMobile ? 3 : 6,
+          width: isMobile ? "70%" : 400,
+          borderRadius: 3,
+        }}
       >
         <Box
           sx={{

@@ -9,7 +9,9 @@ import Costumers from "./components/Costumers/Costumers.jsx";
 import Products from "./components/Products/Products.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./components/Login/Login.jsx";
-import { getCurrentUser, logout } from "./utils/auth.js";
+import Dashboard from "./components/Dashboard/Dashboard.jsx";
+import { getCurrentUser, logout, isAuthenticated } from "./utils/auth.js";
+import { validateLogin } from "./API/UserAPI.js";
 
 function App() {
   const [open, setOpen] = React.useState(false);
@@ -32,6 +34,20 @@ function App() {
       window.removeEventListener("userChanged", handleStorageChange);
     };
   }, []);
+
+  React.useEffect(() => {
+    const handleValidateLogin = async () => {
+      try {
+        const response = await validateLogin();
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    if (isAuthenticated()) {
+      handleValidateLogin();
+    }
+  }, []);
   return (
     <Box
       sx={{
@@ -47,6 +63,7 @@ function App() {
           <SideMenu open={open} toggleDrawer={toggleDrawer} />
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route
               path="/create-document"
               element={<CreateDocument mode="create" />}

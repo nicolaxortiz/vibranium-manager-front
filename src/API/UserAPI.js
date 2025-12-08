@@ -11,3 +11,13 @@ export const signIn = async (userData) => {
     throw error;
   }
 };
+
+export const validateLogin = async () => {
+  try {
+    const response = await api.get(`${API_BASE_URL}/`);
+    return response.data;
+  } catch (error) {
+    console.error("Error validated user:", error.message);
+    throw error;
+  }
+};

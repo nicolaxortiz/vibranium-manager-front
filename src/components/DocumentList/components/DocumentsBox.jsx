@@ -28,6 +28,7 @@ export default function DocumentsBox({
   rowsPerPage,
   setRowsPerPage,
   handledownloadPDF,
+  handleOpenInNewTab,
   handleDeleteDocument,
 }) {
   const navigate = useNavigate();
@@ -108,6 +109,12 @@ export default function DocumentsBox({
               >
                 Valor total
               </TableCell>
+              <TableCell
+                align="center"
+                sx={{ fontWeight: "Bold", minWidth: 100 }}
+              >
+                Abono
+              </TableCell>
               <TableCell align="center" sx={{ fontWeight: "Bold" }}>
                 Fecha creación
               </TableCell>
@@ -143,6 +150,11 @@ export default function DocumentsBox({
                     {row.products
                       .reduce((acc, row) => acc + row.price * row.quantity, 0)
                       .toLocaleString("es-CO")}
+                  </TableCell>
+                  <TableCell align="center">
+                    {row.documentType === "CC"
+                      ? `$ ${row.paid.toLocaleString("es-CO")}`
+                      : "$ ---"}
                   </TableCell>
                   <TableCell align="center">
                     {new Date(row.createdAt).toLocaleDateString("es-CO")}
@@ -196,12 +208,7 @@ export default function DocumentsBox({
       >
         <MenuItem
           onClick={() => {
-            window.open(
-              `${import.meta.env.VITE_API_URL}orders/download/${
-                selectedIndex._id
-              }`,
-              "_blank"
-            );
+            handleOpenInNewTab(selectedIndex._id);
             handleCloseMenu();
           }}
         >
