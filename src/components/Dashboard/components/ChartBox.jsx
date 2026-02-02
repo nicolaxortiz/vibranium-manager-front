@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Box,
-  useMediaQuery,
-  useTheme,
-  Typography,
-  Grid,
-  Stack,
-  Tooltip,
-} from "@mui/material";
+import { Box, useMediaQuery, useTheme, Typography, Stack } from "@mui/material";
 
 export default function ChartBox({
   Type,

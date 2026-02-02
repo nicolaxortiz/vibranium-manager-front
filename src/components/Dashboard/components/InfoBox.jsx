@@ -6,16 +6,14 @@ import {
   Typography,
   Grid,
   Stack,
-  Skeleton,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
+import YearSelect from "./YearSelect";
 
-export default function SmallBox({
-  title,
-  color,
-  SelectedIcon,
-  data,
-  loading,
-}) {
+export default function InfoBox({ title, color, year, setYear }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
@@ -28,8 +26,8 @@ export default function SmallBox({
         px: "15px",
       }}
     >
-      <Grid container spacing={5}>
-        <Grid item size={{ md: 8, xs: 12 }}>
+      <Grid container spacing={2} sx={{ alignItems: "center" }}>
+        <Grid item size={{ md: 8, xs: 8 }}>
           <Stack>
             <Typography
               variant="subtitle1"
@@ -43,29 +41,16 @@ export default function SmallBox({
             >
               {title}
             </Typography>
-
-            <Typography
-              variant="h5"
-              fontWeight={600}
-              sx={{ color: "#2c2c2cff" }}
-            >
-              {loading ? <Skeleton /> : data}
-            </Typography>
           </Stack>
         </Grid>
 
-        {!isMobile && (
-          <Grid
-            item
-            size={{ md: 4, xs: 0 }}
-            sx={{ alignContent: "center" }}
-            align="center"
-          >
-            <SelectedIcon
-              sx={{ fontSize: isMobile ? 40 : 60, color: "#929292ff" }}
-            />
-          </Grid>
-        )}
+        <Grid
+          item
+          size={{ xs: 4, md: 4 }}
+          sx={{ justifyContent: "flex-end", display: "flex" }}
+        >
+          <YearSelect year={year} setYear={setYear} />
+        </Grid>
       </Grid>
     </Box>
   );

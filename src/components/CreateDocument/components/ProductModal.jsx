@@ -70,6 +70,7 @@ export default function ProductModal({
               id="code"
               name="code"
               label="Codigo"
+              color="inputs"
               fullWidth
               variant="standard"
               defaultValue={selectedProduct?.code || ""}
@@ -81,6 +82,7 @@ export default function ProductModal({
               id="name"
               name="name"
               label="Nombre del producto"
+              color="inputs"
               fullWidth
               variant="standard"
               defaultValue={selectedProduct?.name || ""}
@@ -92,6 +94,7 @@ export default function ProductModal({
                 id="price"
                 name="price"
                 label="Precio unitario"
+                color="inputs"
                 fullWidth
                 variant="standard"
                 defaultValue={selectedProduct?.price}
@@ -102,6 +105,7 @@ export default function ProductModal({
                 id="price"
                 name="price"
                 label="Precio unitario"
+                color="inputs"
                 fullWidth
                 variant="standard"
                 value={priceInput}
@@ -129,6 +133,7 @@ export default function ProductModal({
               id="specifications"
               name="specifications"
               label="Especificaciones"
+              color="inputs"
               multiline
               minRows={1}
               maxRows={8}
@@ -141,8 +146,10 @@ export default function ProductModal({
         </form>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancelar</Button>
-        <Button type="submit" form="subscription-form">
+        <Button onClick={handleClose} color="mainButton">
+          Cancelar
+        </Button>
+        <Button type="submit" form="subscription-form" color="mainButton">
           {selectedProduct ? "Editar producto" : "Guardar producto"}
         </Button>
       </DialogActions>

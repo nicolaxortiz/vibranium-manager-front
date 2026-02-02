@@ -69,6 +69,7 @@ export default function SearchClient({
             <TextField
               {...params}
               label="NIT / Nombre"
+              color="inputs"
               variant="outlined"
               size="small"
               fullWidth
@@ -91,6 +92,7 @@ export default function SearchClient({
         >
           <Button
             variant="outlined"
+            color="secondaryButton"
             fullWidth
             disabled={order}
             startIcon={<EditIcon />}
@@ -113,6 +115,7 @@ export default function SearchClient({
         >
           <Button
             variant="contained"
+            color="mainButton"
             fullWidth
             startIcon={<AddIcon />}
             onClick={handleClickOpen}

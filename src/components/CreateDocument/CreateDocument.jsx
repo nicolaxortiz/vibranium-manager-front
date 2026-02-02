@@ -47,7 +47,7 @@ export default function CreateDocument({ mode }) {
           name: product.name,
           quantity: product.quantity,
           price: product.price,
-        }))
+        })),
       );
       setDocumentInformation({
         type: selectedOrder.documentType,
@@ -96,7 +96,7 @@ export default function CreateDocument({ mode }) {
   const handleSaveDocument = async () => {
     if (products.length === 0 || !selectedClient || !documentInformation) {
       setAlertMessage(
-        "Debe seleccionar un cliente y agregar al menos un producto"
+        "Debe seleccionar un cliente y agregar al menos un producto",
       );
       setAlertSeverity("warning");
       handleClick();
@@ -127,7 +127,7 @@ export default function CreateDocument({ mode }) {
         handleClick();
       } catch (error) {
         setAlertMessage(
-          "Error al crear el documento. Por favor, intente de nuevo."
+          "Error al crear el documento. Por favor, intente de nuevo.",
         );
         setAlertSeverity("error");
         handleClick();
@@ -158,7 +158,7 @@ export default function CreateDocument({ mode }) {
         handleClick();
       } catch (error) {
         setAlertMessage(
-          "Error al descargar el documento. Por favor, intente de nuevo."
+          "Error al descargar el documento. Por favor, intente de nuevo.",
         );
         setAlertSeverity("error");
         handleClick();

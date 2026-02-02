@@ -29,13 +29,15 @@ export default function ConfirmModal({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancelar</Button>
+        <Button onClick={handleClose} color="mainButton">
+          Cancelar
+        </Button>
         <Button
           onClick={() => {
             handleFunction();
             handleClose();
           }}
-          autoFocus
+          color="mainButton"
         >
           Aceptar
         </Button>

@@ -60,6 +60,7 @@ export default function CustomerModal({
               id="name"
               name="name"
               label="Nombre"
+              color="inputs"
               fullWidth
               variant="standard"
               defaultValue={selectedClient?.name || ""}
@@ -70,6 +71,7 @@ export default function CustomerModal({
               id="document"
               name="document"
               label="NIT / CC"
+              color="inputs"
               type="number"
               fullWidth
               variant="standard"
@@ -81,6 +83,7 @@ export default function CustomerModal({
               id="phone"
               name="phone"
               label="Celular"
+              color="inputs"
               fullWidth
               variant="standard"
               defaultValue={selectedClient?.phone || ""}
@@ -91,6 +94,7 @@ export default function CustomerModal({
               id="email"
               name="email"
               label="Correo Electronico"
+              color="inputs"
               type="email"
               fullWidth
               variant="standard"
@@ -102,6 +106,7 @@ export default function CustomerModal({
               id="address"
               name="address"
               label="Dirección"
+              color="inputs"
               fullWidth
               variant="standard"
               defaultValue={selectedClient?.address || ""}
@@ -110,8 +115,10 @@ export default function CustomerModal({
         </form>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancelar</Button>
-        <Button type="submit" form="subscription-form">
+        <Button onClick={handleClose} color="mainButton">
+          Cancelar
+        </Button>
+        <Button type="submit" form="subscription-form" color="mainButton">
           {selectedClient ? "Editar cliente" : "Guardar cliente"}
         </Button>
       </DialogActions>

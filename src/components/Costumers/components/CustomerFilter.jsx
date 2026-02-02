@@ -20,6 +20,7 @@ export default function CustomerFilter({
         <TextField
           label="NIT / Nombre"
           variant="outlined"
+          color="inputs"
           size="small"
           fullWidth
           value={search}
@@ -32,7 +33,7 @@ export default function CustomerFilter({
       <Grid size={{ md: 4, xs: 12 }}>
         <Button
           variant="outlined"
-          color="filterOptionButton"
+          color="secondaryButton"
           disabled={!search}
           fullWidth
           startIcon={<BackspaceIcon />}
@@ -53,6 +54,7 @@ export default function CustomerFilter({
       <Grid size={{ md: 4, xs: 12 }}>
         <Button
           variant="contained"
+          color="saveOptionButton"
           disabled={!search}
           fullWidth
           startIcon={<SearchIcon />}
@@ -66,6 +68,7 @@ export default function CustomerFilter({
       <Grid size={{ md: 4, xs: 12 }}>
         <Button
           variant="contained"
+          color="mainButton"
           fullWidth
           startIcon={<AddIcon />}
           onClick={() => {

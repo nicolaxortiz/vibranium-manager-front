@@ -38,6 +38,7 @@ export default function ProductInformation({
           label="Valor unitario"
           variant="outlined"
           size="small"
+          color="inputs"
           fullWidth
           disabled={selectedProduct == null}
           value={priceInput}
@@ -72,6 +73,7 @@ export default function ProductInformation({
           variant="outlined"
           disabled={selectedProduct == null}
           size="small"
+          color="inputs"
           fullWidth
           value={quantityInput}
           onChange={(e) => {
@@ -93,6 +95,7 @@ export default function ProductInformation({
       <Grid size={{ md: 4, xs: 12 }}>
         <Button
           variant="contained"
+          color="saveOptionButton"
           fullWidth
           disabled={!selectedProduct || !quantityInput || quantityInput <= 0}
           startIcon={<CheckIcon />}
@@ -103,14 +106,14 @@ export default function ProductInformation({
               const productExists = prevProducts.some(
                 (p) =>
                   p._id === selectedProduct._id &&
-                  p.price === selectedProduct.price
+                  p.price === selectedProduct.price,
               );
 
               if (productExists) {
                 return prevProducts.map((p) =>
                   p._id === selectedProduct._id
                     ? { ...p, quantity: p.quantity + quantityToAdd }
-                    : p
+                    : p,
                 );
               } else {
                 return [

@@ -62,7 +62,11 @@ export default function Specifications({
       <Grid container spacing={2} sx={{ mt: "10px" }}>
         <Grid size={{ xs: 12, md: 4 }}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label" size="small">
+            <InputLabel
+              id="demo-simple-select-label"
+              size="small"
+              color="inputs"
+            >
               Tipo de documento
             </InputLabel>
             <Select
@@ -71,6 +75,7 @@ export default function Specifications({
               disabled={order}
               size="small"
               label="Tipo de documento"
+              color="inputs"
               value={documentInformation?.type || ""}
               onChange={(e) => {
                 setDocumentInformation((prev) => ({
@@ -90,6 +95,7 @@ export default function Specifications({
               label="Abono del pago total"
               size="small"
               disabled={order}
+              color="inputs"
               value={documentInformation?.paid.toLocaleString("es-CO")}
               onChange={(e) => {
                 let raw = e.target.value;
@@ -124,8 +130,9 @@ export default function Specifications({
             label="Descripcion"
             disabled={order}
             multiline
+            color="inputs"
             minRows={3}
-            maxRows={8} // máximo 8 líneas antes de scroll
+            maxRows={8}
             value={documentInformation?.description || ""}
             onChange={(e) => {
               setDocumentInformation((prev) => ({
@@ -143,6 +150,7 @@ export default function Specifications({
             <Button
               variant="contained"
               fullWidth
+              color="saveOptionButton"
               startIcon={<DoneIcon />}
               disabled={!order}
               onClick={() => {
@@ -157,6 +165,7 @@ export default function Specifications({
             <Button
               variant="contained"
               fullWidth
+              color="saveOptionButton"
               startIcon={<SaveIcon />}
               disabled={
                 documentInformation?.type === "" ||

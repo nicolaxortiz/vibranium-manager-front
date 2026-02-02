@@ -12,6 +12,7 @@ export default function Dashboard() {
 
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [year, setYear] = React.useState(new Date().getFullYear());
 
   React.useEffect(() => {
     if (!isAuthenticated()) {
@@ -22,7 +23,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await getDashboardStats();
+        const response = await getDashboardStats(year);
         setStats(response);
       } catch (error) {
         console.error(error);
@@ -31,11 +32,12 @@ export default function Dashboard() {
       }
     };
 
+    setLoading(true);
     fetchStats();
-  }, []);
+  }, [year]);
   return (
     <>
-      <GroupBox stats={stats} />
+      <GroupBox stats={stats} year={year} setYear={setYear} loading={loading} />
     </>
   );
 }

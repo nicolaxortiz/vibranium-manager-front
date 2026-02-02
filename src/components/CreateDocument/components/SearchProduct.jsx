@@ -68,6 +68,7 @@ export default function SearchProduct({
             <TextField
               {...params}
               label="Nombre / código"
+              color="inputs"
               variant="outlined"
               size="small"
               fullWidth
@@ -89,6 +90,7 @@ export default function SearchProduct({
         >
           <Button
             variant="outlined"
+            color="secondaryButton"
             fullWidth
             startIcon={<EditIcon />}
             onClick={handleClickOpen}
@@ -109,6 +111,7 @@ export default function SearchProduct({
         >
           <Button
             variant="contained"
+            color="mainButton"
             fullWidth
             disabled={order}
             startIcon={<AddIcon />}

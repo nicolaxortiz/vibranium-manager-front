@@ -36,22 +36,19 @@ export default function ProductSummary({
     setOpen(false);
   };
 
-  const [editingIndex, setEditingIndex] = useState(null); // <- cuál fila está en edición
-  const [tempProduct, setTempProduct] = useState({}); // <- datos temporales mientras se edita
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [tempProduct, setTempProduct] = useState({});
 
-  // Iniciar edición
   const handleEdit = (index) => {
     setEditingIndex(index);
-    setTempProduct({ ...products[index] }); // copia del producto actual
+    setTempProduct({ ...products[index] });
   };
 
-  // Cancelar edición
   const handleCancel = () => {
     setEditingIndex(null);
     setTempProduct({});
   };
 
-  // Guardar cambios
   const handleSave = () => {
     const updatedProducts = [...products];
     updatedProducts[editingIndex] = tempProduct;

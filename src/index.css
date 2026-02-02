@@ -3,3 +3,14 @@ body{
   background-color: rgb(238, 238, 238);
 }
 
+::selection {
+  background-color: #474747; 
+  color: #ffffff;         
+}
+
+::-moz-selection {
+  background-color: #474747; 
+  color: #ffffff;
+}
+
+

@@ -11,8 +11,9 @@ import { BarChart } from "@mui/x-charts/BarChart";
 import GaugeBox from "./GaugeBox";
 import MediumBox from "./MediumBox";
 import { rainbowSurgePalette } from "@mui/x-charts/colorPalettes";
+import InfoBox from "./InfoBox";
 
-export default function GroupBox({ stats }) {
+export default function GroupBox({ stats, year, setYear, loading }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const palette = rainbowSurgePalette(theme.palette.mode);
@@ -32,6 +33,7 @@ export default function GroupBox({ stats }) {
             color={palette[0]}
             SelectedIcon={GroupIcon}
             data={stats?.customers}
+            loading={loading}
           />
         </Grid>
         <Grid item size={{ xs: 6, md: 3 }}>
@@ -40,6 +42,7 @@ export default function GroupBox({ stats }) {
             color={palette[1]}
             SelectedIcon={FitnessCenterIcon}
             data={stats?.products}
+            loading={loading}
           />
         </Grid>
 
@@ -49,6 +52,7 @@ export default function GroupBox({ stats }) {
             color={palette[4]}
             SelectedIcon={InsertDriveFileIcon}
             data={stats?.co}
+            loading={loading}
           />
         </Grid>
         <Grid item size={{ xs: 6, md: 3 }}>
@@ -57,8 +61,20 @@ export default function GroupBox({ stats }) {
             color={palette[2]}
             SelectedIcon={RequestQuoteIcon}
             data={stats?.cc}
+            loading={loading}
           />
         </Grid>
+
+        <Grid item size={{ xs: 12, md: 6 }}>
+          <InfoBox
+            title={"Seleccionar año de análisis"}
+            color={palette[2]}
+            year={year}
+            setYear={setYear}
+          />
+        </Grid>
+
+        {!isMobile && <Grid item size={{ xs: 0, md: 6 }}></Grid>}
 
         <Grid item size={{ xs: 12, md: 6 }}>
           <ChartBox
@@ -95,14 +111,16 @@ export default function GroupBox({ stats }) {
             totalPaid={stats?.totalPaid}
             totalInvoiced={stats?.totalInvoiced}
             totalPending={stats?.totalPending}
+            loading={loading}
           />
         </Grid>
 
-        <Grid item size={{ xs: 12, md: 3 }}>
+        <Grid item size={{ xs: 12, md: 6 }}>
           <MediumBox
             title={"Listado de clientes con deuda"}
             color={palette[0]}
             data={stats?.clientsWithDebt}
+            loading={loading}
           />
         </Grid>
       </Grid>

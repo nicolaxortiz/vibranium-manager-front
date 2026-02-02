@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, useMediaQuery, useTheme, Typography, Grid } from "@mui/material";
+import {
+  Box,
+  useMediaQuery,
+  useTheme,
+  Typography,
+  Grid,
+  Skeleton,
+} from "@mui/material";
 import { rainbowSurgePalette } from "@mui/x-charts/colorPalettes";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
 
@@ -9,15 +16,11 @@ export default function GaugeBox({
   totalPaid,
   totalInvoiced,
   totalPending,
+  loading,
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const palette = rainbowSurgePalette(theme.palette.mode);
-
-  const formmatedTotalPaid =
-    totalPaid >= 1000000
-      ? `$${(totalPaid / 1000000).toFixed(1)}M`
-      : `$${(totalPaid / 1000).toFixed(0)}K`;
 
   return (
     <Box
@@ -45,51 +48,58 @@ export default function GaugeBox({
           </Typography>
         </Grid>
         <Grid item size={{ md: 12, xs: 12 }}>
-          <PieChart
-            hideLegend={true}
-            series={[
-              {
-                arcLabel: (item) =>
-                  `${((item.value * 100) / totalInvoiced).toFixed(2)}%`,
-                innerRadius: 0,
-                outerRadius: 80,
-                data: [
-                  {
-                    label: "Abonos",
-                    value: totalPaid,
-                    color: palette[2],
-                  },
-                  {
-                    label: "Pendiente",
-                    value: totalPending,
-                    color: palette[1],
-                  },
-                ],
-                highlightScope: { fade: "global", highlight: "item" },
-              },
-              {
-                id: "outer",
-                innerRadius: 100,
-                outerRadius: 120,
-                data: [
-                  {
-                    label: "Ventas",
-                    value: totalInvoiced,
-                    color: palette[0],
-                  },
-                ],
-                highlightScope: { fade: "global", highlight: "item" },
-              },
-            ]}
-            sx={{
-              [`& .${pieArcLabelClasses.root}`]: {
-                fontWeight: "bold",
-                fontFamily: "Montserrat",
-                color: "white",
-              },
-            }}
-            height={250}
-          />
+          {loading ? (
+            <Skeleton
+              variant="circular"
+              height={250}
+              width={250}
+              sx={{ margin: "auto", display: "block" }}
+            />
+          ) : (
+            <PieChart
+              hideLegend={true}
+              series={[
+                {
+                  arcLabel: (item) =>
+                    totalInvoiced > 0
+                      ? `${((item.value * 100) / totalInvoiced).toFixed(2)}%`
+                      : "0%",
+                  innerRadius: 0,
+                  outerRadius: 80,
+                  data: [
+                    { label: "Abonos", value: totalPaid, color: palette[2] },
+                    {
+                      label: "Pendiente",
+                      value: totalPending,
+                      color: palette[1],
+                    },
+                  ],
+                  highlightScope: { fade: "global", highlight: "item" },
+                },
+                {
+                  id: "outer",
+                  innerRadius: 100,
+                  outerRadius: 120,
+                  data: [
+                    {
+                      label: "Ventas",
+                      value: totalInvoiced,
+                      color: palette[0],
+                    },
+                  ],
+                  highlightScope: { fade: "global", highlight: "item" },
+                },
+              ]}
+              sx={{
+                [`& .${pieArcLabelClasses.root}`]: {
+                  fontWeight: "bold",
+                  fontFamily: "Montserrat",
+                  color: "white",
+                },
+              }}
+              height={250}
+            />
+          )}
         </Grid>
         <Grid
           item
@@ -113,7 +123,11 @@ export default function GaugeBox({
                 fontWeight={600}
                 sx={{ color: "#2c2c2cff" }}
               >
-                $ {totalInvoiced?.toLocaleString("es-CO")}
+                {loading ? (
+                  <Skeleton />
+                ) : (
+                  `$ ${totalInvoiced?.toLocaleString("es-CO")}`
+                )}
               </Typography>
             </Grid>
 
@@ -132,7 +146,11 @@ export default function GaugeBox({
                 fontWeight={600}
                 sx={{ color: "#2c2c2cff" }}
               >
-                $ {totalPaid?.toLocaleString("es-CO")}
+                {loading ? (
+                  <Skeleton />
+                ) : (
+                  `$ ${totalPaid?.toLocaleString("es-CO")}`
+                )}
               </Typography>
             </Grid>
 
@@ -151,7 +169,11 @@ export default function GaugeBox({
                 fontWeight={600}
                 sx={{ color: "#2c2c2cff" }}
               >
-                $ {totalPending?.toLocaleString("es-CO")}
+                {loading ? (
+                  <Skeleton />
+                ) : (
+                  `$ ${totalPending?.toLocaleString("es-CO")}`
+                )}
               </Typography>
             </Grid>
           </Grid>

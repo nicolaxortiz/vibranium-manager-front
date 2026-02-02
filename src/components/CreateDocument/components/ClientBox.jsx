@@ -4,6 +4,7 @@ import Title from "../../Title";
 import SearchClient from "./SearchClient";
 import ClientInformation from "./ClientInformation";
 import ClientModal from "./ClientModal";
+import { rainbowSurgePalette } from "@mui/x-charts/colorPalettes";
 
 export default function ClientBox({
   selectedClient,
@@ -14,6 +15,7 @@ export default function ClientBox({
   handleClick,
 }) {
   const theme = useTheme();
+  const palette = rainbowSurgePalette(theme.palette.mode);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const [open, setOpen] = React.useState(false);

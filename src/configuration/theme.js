@@ -6,10 +6,26 @@ const theme = createTheme({
   },
 
   palette: {
-    filterOptionButton: {
-      main: "#868686ff",
-      light: "#a6a6a6ff",
-      dark: "#606060ff",
+    inputs: {
+      main: "#1a1a1a",
+      contrastText: "#ffffff",
+    },
+    mainButton: {
+      main: "#1a1a1a",
+      light: "#3c3c3cff",
+      dark: "#000000ff",
+      contrastText: "#ffffffff",
+    },
+    secondaryButton: {
+      main: "#5f5f5f",
+      light: "#b6b6b6ff",
+      dark: "#5c5c5cff",
+      contrastText: "#ffffffff",
+    },
+    saveOptionButton: {
+      main: "#1a64d3ff",
+      light: "#5590ffff",
+      dark: "#0042a6ff",
       contrastText: "#ffffffff",
     },
     downloadButton: {
@@ -26,7 +42,6 @@ const theme = createTheme({
       main: "#fcda1cff",
       light: "#ffec66ff",
       dark: "#caa800ff",
-
       contrastText: "#000000ff",
     },
     alertsuccess: {

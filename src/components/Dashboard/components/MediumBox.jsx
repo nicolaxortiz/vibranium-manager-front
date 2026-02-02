@@ -6,8 +6,16 @@ import {
   Typography,
   Grid,
   Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Skeleton,
 } from "@mui/material";
-export default function MediumBox({ title, color, data }) {
+import TruncatedCell from "./TruncatedCell";
+export default function MediumBox({ title, color, data, loading }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
@@ -34,37 +42,66 @@ export default function MediumBox({ title, color, data }) {
           {title}
         </Typography>
 
-        <Grid container spacing={2} sx={{ mt: "20px" }}>
-          {data?.map((item) => {
-            return (
-              <>
-                <Grid item size={6} align="center">
-                  <Typography
-                    variant="subtitle1"
-                    fontWeight={600}
-                    sx={{
-                      color: "#929292ff",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
+        {loading ? (
+          <Stack spacing={2} sx={{ mt: 2, mb: 2 }}>
+            <Skeleton variant="rounded" height={20} />
+            <Skeleton variant="rounded" height={20} />
+            <Skeleton variant="rounded" height={20} />
+            <Skeleton variant="rounded" height={20} />
+            <Skeleton variant="rounded" height={20} />
+            <Skeleton variant="rounded" height={20} />
+            <Skeleton variant="rounded" height={20} />
+          </Stack>
+        ) : (
+          <TableContainer sx={{ maxHeight: 440 }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  <TableCell
+                    align="center"
+                    sx={{ fontWeight: "Bold", minWidth: 250 }}
                   >
-                    {item?.name}
-                  </Typography>
-                </Grid>
-                <Grid item size={6} align="center">
-                  <Typography
-                    variant="subtitle1"
-                    fontWeight={600}
-                    sx={{ color: "#2c2c2cff" }}
+                    Nombre
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    sx={{ fontWeight: "Bold", minWidth: 100 }}
                   >
-                    $ {item?.debt.toLocaleString("es-CO")}
-                  </Typography>
-                </Grid>
-              </>
-            );
-          })}
-        </Grid>
+                    CC / NIT
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    sx={{ fontWeight: "Bold", minWidth: 150 }}
+                  >
+                    Deuda
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.length === 0 && (
+                  <TableRow>
+                    <TableCell colSpan={4} align="center">
+                      No hay deudores para mostrar
+                    </TableCell>
+                  </TableRow>
+                )}
+                {data?.map((row, index) => {
+                  return (
+                    <TableRow tabIndex={-1} key={index}>
+                      <TableCell align="center">
+                        <TruncatedCell text={row.name} maxWidth={250} />
+                      </TableCell>
+                      <TableCell align="center">{row.document}</TableCell>
+                      <TableCell align="center">
+                        $ {row.debt.toLocaleString("es-CO")}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
       </Stack>
     </Box>
   );

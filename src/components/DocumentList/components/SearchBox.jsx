@@ -38,6 +38,7 @@ export default function SearchBox(props) {
             label="Nombre del cliente"
             variant="outlined"
             size="small"
+            color="inputs"
             fullWidth
             value={props.customerName}
             onChange={(e) => {
@@ -51,6 +52,7 @@ export default function SearchBox(props) {
             label="NIT / CC del cliente"
             variant="outlined"
             size="small"
+            color="inputs"
             fullWidth
             value={props.customerDocument}
             onChange={(e) => {
@@ -61,13 +63,18 @@ export default function SearchBox(props) {
 
         <Grid size={{ md: 4, xs: 12 }}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label" size="small">
+            <InputLabel
+              id="demo-simple-select-label"
+              size="small"
+              color="inputs"
+            >
               Tipo de documento
             </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               size="small"
+              color="inputs"
               label="Tipo de documento"
               value={props.documentType}
               onChange={(e) => {
@@ -86,6 +93,7 @@ export default function SearchBox(props) {
               label="Fecha inicio"
               format="DD-MM-YYYY"
               size="small"
+              color="inputs"
               fullWidth
               value={props.fromDate}
               onChange={(newValue) => {
@@ -101,6 +109,7 @@ export default function SearchBox(props) {
               label="Fecha final"
               format="DD-MM-YYYY"
               size="small"
+              color="inputs"
               fullWidth
               value={props.toDate}
               onChange={(newValue) => {
@@ -113,7 +122,7 @@ export default function SearchBox(props) {
         <Grid size={{ md: 4, xs: 12 }}>
           <Button
             variant="outlined"
-            color="filterOptionButton"
+            color="secondaryButton"
             disabled={
               !props.documentType &&
               !props.fromDate &&
@@ -148,6 +157,7 @@ export default function SearchBox(props) {
         <Grid size={{ md: 4, xs: 12 }}>
           <Button
             variant="contained"
+            color="saveOptionButton"
             disabled={
               !props.documentType &&
               !props.fromDate &&
